@@ -11,7 +11,7 @@ import {
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useLink } from 'solito/link'
 
 import { api } from 'server/utils/trpc'
@@ -27,14 +27,10 @@ export function HomeScreen({ greeting }: HomeProps) {
 
   const result = api.greeting.useQuery({ name: 'Kelvin' })
 
-  //const result = api.greeting.useQuery({ name: 'Kelvin' })
-
-  useEffect(() => {}, [])
-
   return (
     <YStack f={1} jc="center" ai="center" p="$4" gap="$4">
       <YStack gap="$4" bc="$background">
-        <H1 ta="center">Welcome to Tamagui {result.data?.text}</H1>
+        <H1 ta="center">Welcome to Tamagui {greeting ?? result.data?.text}</H1>
         <Paragraph ta="center">
           Here's a basic starter to show navigating from one screen to another. This screen uses the
           same code on Next.js and React Native.

@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { httpBatchLink } from '@trpc/client'
-import { createTRPCNext } from '@trpc/next'
-import { ssrPrepass } from '@trpc/next/ssrPrepass'
 import { AppRouter } from '../routers/root'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createTRPCReact } from '@trpc/react-query'
@@ -28,11 +26,6 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
           transformer: superjson,
-          async headers() {
-            return {
-              Authorization: undefined,
-            }
-          },
         }),
       ],
     })
